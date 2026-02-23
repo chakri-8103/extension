@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Abhyas Student Panel",
+  "version": "1.0",
+  "description": "Show logged in student details",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["https://abhyas.ai/*"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
