@@ -1,13 +1,14 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    document.getElementById("openSite").onclick = () => {
+        chrome.tabs.create({
+            url: "https://abhyas.ai/student",
+        });
+    };
 
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: getLoginData
-    }, (results) => {
+    chrome.storage.local.get("studentData", (result) => {
 
-        let data = results[0].result;
+        let data = result.studentData;
 
         if (!data) {
             showNotLogin();
@@ -16,9 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             data = JSON.parse(data);
+
             if (typeof data === "string") {
                 data = JSON.parse(data);
             }
+
         } catch (e) {
             showNotLogin();
             return;
@@ -29,42 +32,57 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-// Get localStorage data from site
-function getLoginData() {
-    return localStorage.getItem("logindata"); // 🔴 change key if needed
-}
-
 // Show profile
 function showProfile(data) {
 
+    document.getElementById("notLogin").classList.add("hidden");
     document.getElementById("profile").classList.remove("hidden");
 
-    document.getElementById("name").innerText = data.stdName;
-    document.getElementById("suc").innerText = data.stdSuc;
-    document.getElementById("section").innerText = data.stdSection;
-    document.getElementById("campus").innerText = data.stdCampus;
+    document.getElementById("name").innerText = data.stdName || "N/A";
+    document.getElementById("suc").innerText = data.stdSuc || "N/A";
+    document.getElementById("section").innerText = data.stdSection || "N/A";
+    document.getElementById("campus").innerText = data.stdCampus || "N/A";
 
     if (data.stdPhoto) {
         document.getElementById("photo").src =
             "https://analysis.aditya.ac.in/uploads/student_photos/" + data.stdPhoto;
-
     }
 
-    document.getElementById("dashboard").onclick = () => {
-        chrome.tabs.create({
-            url: "https://abhyas.ai/beta/#/student"
+    document.getElementById("letstalk").onclick = () => {
+        chrome.windows.create({
+            url: "https://abhyas.ai/letstalk/#/student",
+            type: "popup",
+            state: "fullscreen"
+        });
+    };
+
+    document.getElementById("analysis").onclick = () => {
+        chrome.windows.create({
+            url: "https://analysis.aditya.ac.in/v23/student/#/student",
+            type: "popup",
+            state: "fullscreen"
+        });
+    };
+
+    document.getElementById("lab").onclick = () => {
+        chrome.windows.create({
+            url: "https://abhyas.ai/lab/#/student",
+            type: "popup",
+            state: "fullscreen"
+        });
+    };
+
+    document.getElementById("abhyas").onclick = () => {
+        chrome.windows.create({
+            url: "https://abhyas.ai/beta/#/student",
+            type: "popup",
+            state: "fullscreen"
         });
     };
 }
 
 // Show not login
 function showNotLogin() {
-
+    document.getElementById("profile").classList.add("hidden");
     document.getElementById("notLogin").classList.remove("hidden");
-
-    document.getElementById("openSite").onclick = () => {
-        chrome.tabs.create({
-            url: "https://abhyas.ai"
-        });
-    };
 }

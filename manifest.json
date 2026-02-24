@@ -1,11 +1,37 @@
 {
   "manifest_version": 3,
-  "name": "Abhyas Student Panel",
+  "name": "Abhyas AI Extension",
   "version": "1.0",
-  "description": "Show logged in student details",
-  "permissions": ["scripting", "activeTab"],
-  "host_permissions": ["https://abhyas.ai/*"],
+  "description": "Abhyas AI Extension for quick access to Abhyas AI platform.",
+
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://abhyas.ai/*"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "icons": {
+    "16": "16.png",
+    "48": "16.png",
+    "128": "16.png"
+  },
+
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "16.png",
+      "48": "16.png",
+      "128": "16.png"
+    }
   }
 }
