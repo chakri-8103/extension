@@ -6,7 +6,8 @@
 
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "windows"
   ],
 
   "host_permissions": [

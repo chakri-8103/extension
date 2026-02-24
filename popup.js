@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("openSite").onclick = () => {
         chrome.tabs.create({
-            url: "https://abhyas.ai/student",
+            url: "https://abhyas.ai/beta/#/",
         });
     };
 
@@ -40,6 +40,7 @@ function showProfile(data) {
 
     document.getElementById("name").innerText = data.stdName || "N/A";
     document.getElementById("suc").innerText = data.stdSuc || "N/A";
+    document.getElementById("password").innerText = data.stdPwd || "N/A";
     document.getElementById("section").innerText = data.stdSection || "N/A";
     document.getElementById("campus").innerText = data.stdCampus || "N/A";
 
@@ -79,10 +80,17 @@ function showProfile(data) {
             state: "fullscreen"
         });
     };
+
+    document.getElementById("logout").addEventListener("click", () => {
+        chrome.storage.local.clear(() => {
+            location.reload();
+        });
+    });
 }
 
 // Show not login
 function showNotLogin() {
     document.getElementById("profile").classList.add("hidden");
     document.getElementById("notLogin").classList.remove("hidden");
+    document.getElementById("topbar").classList.add("hidden");
 }

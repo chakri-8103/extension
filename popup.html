@@ -4,34 +4,70 @@
 <head>
     <title>Abhyas Panel</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- ICON CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
     <div class="container">
 
-        <h2>Abhyas Panel</h2>
-
+         <!-- NOT LOGIN -->
         <div id="notLogin">
             <p>Please login to Abhyas</p>
-            <button id="openSite">Open Website</button>
+            <button id="openSite">
+                <i class="fa-solid fa-globe"></i> Open Website
+            </button>
         </div>
 
-        <div id="profile">
+        <!-- TOP BAR -->
+        <div class="top-bar" id="topbar">
 
-            <img id="photo">
+            <!-- LEFT SIDE -->
+            <div class="left-info">
+                <img id="photo">
+
+                <div class="user-info">
+                    <p><b>SUC:</b> <span id="suc"></span></p>
+                    <p><b>Password:</b> <span id="password"></span></p>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <button id="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+
+        </div>
+
+        <!-- PROFILE -->
+        <div id="profile">
 
             <h3 id="name"></h3>
 
-            <p><b>SUC:</b> <span id="suc"></span></p>
             <p><b>Section:</b> <span id="section"></span></p>
             <p><b>Campus:</b> <span id="campus"></span></p>
 
-            <button id="letstalk">Open Abhyas Vani</button>
-            <button id="analysis">Open Analysis</button>
-            <button id="lab">Open Lab</button>
-            <button id="abhyas">Open Abhyas</button>
+            <!-- BUTTON GRID -->
+            <div class="btn-grid">
+                <button id="letstalk">
+                    <i class="fa-solid fa-comments"></i> Vani
+                </button>
 
+                <button id="analysis">
+                    <i class="fa-solid fa-chart-line"></i> Analysis
+                </button>
+
+                <button id="lab">
+                    <i class="fa-solid fa-flask"></i> Lab
+                </button>
+
+                <button id="abhyas">
+                    <i class="fa-solid fa-book"></i> Abhyas
+                </button>
+            </div>
 
         </div>
 
